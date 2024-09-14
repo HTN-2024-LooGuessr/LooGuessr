@@ -1,24 +1,13 @@
 import React, {useCallback, useState, useEffect} from "react";
 import "./Friends.css";
-import PropTypes from "prop-types";
 import axios from "axios";
-
-// function isSubstring(main, compare){
-//     let P = 27, M = 10**9+7
-//     if (compare.length() > main.length())
-//         return false
-//     let hash_main = 0
-//     for ()
-// }
-
-
 
 export default function FriendList(props) {
     function processQuery(friends){
         return friends.filter(f => f.username.includes(props.searchParam))
     }
+
     //Query Friends from Server
-    // const friends = [ { username: "Saarujan Sathees", profileImg: "https://htmlcolorcodes.com/assets/images/colors/red-color-solid-background-1920x1080.png" } ];
     const [friends, setFriends] = useState([])
     const [processedFriends, setProcessedFriends] = useState([])
     const [loading, setLoading] = useState(true)
@@ -35,6 +24,7 @@ export default function FriendList(props) {
                 console.log(error)
         })
     }, [])
+    
     useEffect(() => {
         const loadData = async () => {
             await loadFriends();
@@ -50,6 +40,7 @@ export default function FriendList(props) {
     }, [loadFriends]);
     
     useEffect(() => {
+        console.log(props.searchParam)
         setFriends((friends) => friends.filter(f => f.username.includes(props.searchParam)))
     }, [props.searchParam]);
 

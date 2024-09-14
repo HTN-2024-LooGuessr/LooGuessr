@@ -10,10 +10,18 @@ export default function CameraComponent() {
         
         const context = canvas.getContext('2d');
         context.drawImage(video, 0, 0, canvas.width, canvas.height);
-        const link = document.createElement('a');
-        link.download = `Capture${Math.floor(Date.now() / 1000)}.jpg`;
-        link.href = canvas.toDataURL('image/jpeg');
-        link.click();
+        
+        //JONATHAN: Send the dataURL (image), and the username of the current account
+        navigator.geolocation.getCurrentPosition(pos => {
+            const data = {
+                account: localStorage.getItem("accountID or whatever"),
+                image: canvas.toDataURL("image/jpeg"),
+                latitude: pos.coords.latitude,
+                longitude: pos.coords.longitude,
+                altitude: pos.coords.altitude ? pos.coords.altitude : 0,
+                timestamp: pos.timestamp
+            }  
+        })  
     };
 
     return (

@@ -8,6 +8,7 @@ export default function SearchBar(props) {
         const search = document.getElementById('searchbar').value;
         props.setSearchParam(search)
     }
+    
     return (
         <>
             <input id='searchbar' autoCapitalize='none' onKeyUp={onSearch}></input>

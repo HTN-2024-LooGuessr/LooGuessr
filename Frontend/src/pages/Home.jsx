@@ -7,6 +7,7 @@ export default function Home(props) {
     const [searchParam, setSearchParam] = useState("");
     return (
         <>
+            <button onClick={props.logout}>Logout</button>
             <SearchBar setSearchParam={setSearchParam}></SearchBar>
             <FriendList searchParam={searchParam}></FriendList>
         </>
