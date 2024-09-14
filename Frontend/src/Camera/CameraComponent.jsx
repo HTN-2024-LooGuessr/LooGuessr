@@ -11,17 +11,6 @@ function stopCamera() {
 };
 
 export default function CameraComponent() {
-    const videoRef = useRef(null);
-    //const canvasRef = useRef(null);
-    //const [isCapturing, setIsCapturing] = useState(false);
-    //const [capturedImage, setCapturedImage] = useState(false);
-
-    useEffect(async () => {
-        let stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" }, audio: false });
-        const video = document.getElementById("cameraFeed");
-        video.srcObject = stream;
-    })
-
     const captureImage = () => {
         const context = canvasRef.current.getContext('2d');
         context.drawImage(videoRef.current, 0, 0, canvasRef.current.width, canvasRef.current.height);
@@ -33,7 +22,7 @@ export default function CameraComponent() {
 
     return (
         <>
-            <video ref={videoRef} autoPlay playsInline id="cameraFeed"></video>
+            <video autoPlay playsInline id="cameraFeed"></video>
         </>
     );
 };

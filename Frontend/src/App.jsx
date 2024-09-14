@@ -15,6 +15,7 @@ export default function App() {
                 <Route path='LooGuessr/photo' element={<Photo></Photo>}/>
                 <Route path='LooGuessr/login' element={<Login></Login>}/>
                 <Route path='LooGuessr/register' element={<Register></Register>}/>
+                <Route path='LooGuessr/profile'/>
             </Routes>
             <NavBar></NavBar>
         </>

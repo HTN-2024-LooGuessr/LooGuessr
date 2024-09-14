@@ -14,8 +14,30 @@ export default function NavBar() {
 
 function NavButton(props) {
     const navigate = useNavigate();
+
+    async function click(ev) {
+        ev.preventDefault();
+        if (window.location.pathname.indexOf("photo") != -1) {
+            const camVideo = document.getElementById("cameraFeed");
+            const stream = camVideo.srcObject;
+
+            if (stream != null) {
+                const tracks = stream.getTracks();
+                tracks.forEach(track => track.stop());
+                camVideo.srcObject = null;
+            }
+        }
+
+        navigate(`/LooGuessr/${props.redirect}`);
+        if (props.redirect == "photo") {
+            let stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" }, audio: false });
+            const video = document.getElementById("cameraFeed");
+            video.srcObject = stream;
+        }
+    }
+    
     return (
-        <button className='navbutton' onClick={(e) => {e.preventDefault; navigate(`/LooGuessr/${props.redirect}`)}} style={{borderRadius: props.borderRadius}}>
+        <button className='navbutton' onClick={click} style={{borderRadius: props.borderRadius}}>
             <span className='navicon material-symbols-rounded'>{props.icon}</span>
         </button>
     )
