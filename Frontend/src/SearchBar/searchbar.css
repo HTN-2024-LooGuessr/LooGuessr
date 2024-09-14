@@ -1,21 +1,38 @@
 
 #searchbar {
+    box-sizing: border-box;
     position: absolute;
     top: 3vh;
     left: 3vh;
     width: calc(100vw - 6vh);
     height: 5vh;
+    padding: 0 5vh 3px 4vh;
 
     border: none;
     outline: none;
-    background-color: var(--primary-color);
+    background: var(--primary-color);
+
+    font-size: 16px;
+    font-weight: 400;
+    font-family: system-ui;
+    color: white;
     border-radius: 15px;
+    transition: bacground 250ms ease-in;
 }
 
 #searchbutton {
     position: absolute;
     top: 4.25vh;
-    right: 4vh;
+    right: 5vh;
     color: var(--background-color);
     font-variation-settings: 'FILL' 0, 'wght' 500, 'GRAD' 0, 'opsz' 24;
+    transition: color 15ms ease-in;
+}
+
+#searchbar:focus {
+    background: rgb(80 80 80);
+}
+
+#searchbar:focus ~ #searchbutton {
+    color: var(--accent-color);
 }
