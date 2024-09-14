@@ -1,5 +1,6 @@
 :root {
     --background-color: rgb(40 40 40);  
+    --primary-color: rgb(70 70 70);
     --accent-color: rgb(170 100 180);
     --on-hover: rgb(150 80 160);
 }
@@ -9,9 +10,10 @@ body {
     height: 100vh;
     padding: 0;
     margin: 0;
-    background-color: var(--background-color);
 }
 
 #root {
+    width: 100vw;
+    height: 100vh;
     background: var(--background-color);
 }

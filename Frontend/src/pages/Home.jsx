@@ -4,9 +4,9 @@ import SearchBar from '../SearchBar/searchbar.jsx';
 
 export default function Home() {
     return (
-        <div>
+        <>
             <SearchBar></SearchBar>
             <Friends></Friends>
-        </div>
+        </>
     );
 }

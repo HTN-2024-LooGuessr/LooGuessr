@@ -4,14 +4,3 @@
     --on-hover: rgb(150 80 160);
 }
 
-body {
-    width: 100vw;
-    height: max-content;
-    padding: 0;
-    margin: 0;
-    background-color: var(--background-color);
-}
-
-#root {
-    background: var(--background-color);
-}
