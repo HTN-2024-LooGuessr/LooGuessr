@@ -1,0 +1,16 @@
+
+#navbar {
+    display: flex;
+    width: 100vw;
+    height: 5vh;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
+    background-color: rgb(var(--background-color));
+    justify-content: center;
+    align-items: center;
+}
+
+.navbutton {
+    width: calc(100vw / 3);
+    height: 5vh;
+    background-color: rgba(10, 220, 250, 0.5);
+}
