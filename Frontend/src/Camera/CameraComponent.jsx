@@ -1,14 +1,5 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { Camera, Download, Video, VideoOff } from 'lucide-react';
+import React from 'react';
 import './CameraComponent.css';
-
-function stopCamera() {
-    const stream = videoRef.current.srcObject;
-    const tracks = stream.getTracks();
-    tracks.forEach(track => track.stop());
-    videoRef.current.srcObject = null;
-    setIsCapturing(false);
-};
 
 export default function CameraComponent() {
     function capture() {
