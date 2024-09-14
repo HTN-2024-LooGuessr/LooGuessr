@@ -11,18 +11,24 @@ function stopCamera() {
 };
 
 export default function CameraComponent() {
-    const captureImage = () => {
-        const context = canvasRef.current.getContext('2d');
-        context.drawImage(videoRef.current, 0, 0, canvasRef.current.width, canvasRef.current.height);
+    function capture() {
+        const video = document.getElementById("cameraFeed");
+        const canvas = document.createElement("canvas");
+        canvas.width = document.body.clientWidth;
+        canvas.height = document.body.clientHeight;
+        
+        const context = canvas.getContext('2d');
+        context.drawImage(video, 0, 0, canvas.width, canvas.height);
         const link = document.createElement('a');
         link.download = `Capture${Math.floor(Date.now() / 1000)}.jpg`;
-        link.href = canvasRef.current.toDataURL('image/jpeg');
+        link.href = canvas.toDataURL('image/jpeg');
         link.click();
     };
 
     return (
         <>
             <video autoPlay playsInline id="cameraFeed"></video>
+            <button id='shutter' onClick={capture}></button>
         </>
     );
 };

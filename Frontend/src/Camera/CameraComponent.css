@@ -4,3 +4,23 @@
     width: 100vw;
     object-fit: cover;
 }
+
+#shutter {
+    position: absolute;
+    height: 8vh;
+    width: 8vh;
+    left: calc(50vw - 4vh);
+    bottom: 16vh;
+
+    background-color: rgb(240 240 240);
+    box-shadow: inset 0 0 0 3px var(--primary-color);
+    border: 5px solid rgb(240 240 240);
+    border-radius: 15px;
+    transition: all 150ms linear;
+}
+
+#shutter:active {
+    background-color: var(--accent-color);
+    border: none;
+    box-shadow: inset 0 0 0 3px var(--accent-color), 0 0 5px rgb(0 0 0 / 25%);
+}
