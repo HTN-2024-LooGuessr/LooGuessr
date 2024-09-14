@@ -11,7 +11,7 @@ export default function App() {
     return (
         <>
             <Routes>
-                <Route path='LooGuessr/home' element={<Home></Home>}/>
+                <Route path='LooGuessr/' element={<Home></Home>}/>
                 <Route path='LooGuessr/photo' element={<Photo></Photo>}/>
                 <Route path='LooGuessr/login' element={<Login></Login>}/>
                 <Route path='LooGuessr/register' element={<Register></Register>}/>
