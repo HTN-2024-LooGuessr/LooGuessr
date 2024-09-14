@@ -2,11 +2,11 @@ import React from 'react';
 import './CameraComponent.css';
 
 export default function CameraComponent() {
-    function capture() {
-        const video = document.getElementById("cameraFeed");
+    async function capture() {
+        const video = document.getElementById("cameraFeed") 
         const canvas = document.createElement("canvas");
-        canvas.width = document.body.clientWidth;
-        canvas.height = document.body.clientHeight;
+        canvas.width = video.videoWidth;
+        canvas.height = video.videoHeight;
         
         const context = canvas.getContext('2d');
         context.drawImage(video, 0, 0, canvas.width, canvas.height);
