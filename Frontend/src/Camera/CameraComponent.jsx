@@ -19,7 +19,7 @@ export default function CameraComponent() {
     return (
         <>
             <video autoPlay playsInline id="cameraFeed"></video>
-            <button id='shutter' onClick={capture}></button>
+            <input id='shutter' onClick={capture} role='button' type='button' capture="camera"></input>
         </>
     );
 };
