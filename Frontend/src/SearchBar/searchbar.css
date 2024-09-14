@@ -1,4 +1,13 @@
 
+#searchbutton {
+    position: absolute;
+    top: 4vh;
+    right: 5vh;
+    color: var(--background-color);
+    font-variation-settings: 'FILL' 0, 'wght' 500, 'GRAD' 0, 'opsz' 24;
+    transition: color 100ms ease-in;
+}
+
 #searchbar {
     box-sizing: border-box;
     position: absolute;
@@ -11,6 +20,7 @@
     border: none;
     outline: none;
     background-color: var(--primary-color);
+    text-transform: lowercase;
 
     font-size: 16px;
     font-weight: 400;
@@ -20,23 +30,10 @@
     transition: background-color 100ms ease-in;
 }
 
-#searchbutton {
-    position: absolute;
-    top: 4vh;
-    right: 5vh;
-    color: var(--background-color);
-    font-variation-settings: 'FILL' 0, 'wght' 500, 'GRAD' 0, 'opsz' 24;
-    transition: color 100ms ease-in;
-}
-
 #searchbar:focus {
     background-color: rgb(70 70 70);
 }
 
 #searchbar:focus ~ #searchbutton {
     color: var(--accent-color);
-}
-
-#searchbar:focus ~ #searchbar:active {
-    color: var(--on-hover);
 }
