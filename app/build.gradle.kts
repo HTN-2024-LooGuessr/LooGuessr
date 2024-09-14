@@ -1,13 +1,15 @@
 plugins {
     alias(libs.plugins.android.application)
+    id("com.android.looguessr")
+    id("com.google.gms.google-services")
 }
 
 android {
-    namespace = "com.example.looguessr"
+    namespace = "com.example.looguesser"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.looguessr"
+        applicationId = "com.example.looguesser"
         minSdk = 33
         targetSdk = 34
         versionCode = 1
@@ -35,7 +37,6 @@ android {
 }
 
 dependencies {
-
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.constraintlayout)
@@ -46,4 +47,5 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
+    implementation(platform("com.google.firebase:firebase-bom:33.3.0"))
 }
