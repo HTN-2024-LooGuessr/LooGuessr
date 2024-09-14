@@ -1,7 +1,4 @@
 import './navbar.css'
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-
 
 export default function NavBar() {
     return (
