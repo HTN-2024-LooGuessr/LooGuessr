@@ -18,7 +18,7 @@ export default function FriendList(props) {
                 // let processed = processQuery(res.data.data)
                 // console.log(processed)
                 setFriends(res.data.data)
-                // setProcessedFriends([]);
+                setProcessedFriends(res.data.data);
                 setLoading(false)
             }).catch((error) => {
                 console.log(error)
@@ -40,8 +40,7 @@ export default function FriendList(props) {
     }, [loadFriends]);
     
     useEffect(() => {
-        console.log(props.searchParam)
-        setFriends((friends) => friends.filter(f => f.username.includes(props.searchParam)))
+        setProcessedFriends(friends.filter(f => f.username.includes(props.searchParam)))
     }, [props.searchParam]);
 
     // console.log(JSON.parse(friends))
@@ -52,7 +51,7 @@ export default function FriendList(props) {
 
     return (
         <div id="friendList">
-            { friends.map(friend => <Friend imgSrc={friend.profileImg} key={"friend:" + friend.username} username={friend.username}></Friend>) }
+            { processedFriends.map(friend => <Friend imgSrc={friend.profileImg} key={"friend:" + friend.username} username={friend.username}></Friend>) }
         </div>
     );
 }
