@@ -30,9 +30,13 @@
 }
 
 #searchbar:focus {
-    background-color: rgb(80 80 80);
+    background-color: rgb(70 70 70);
 }
 
 #searchbar:focus ~ #searchbutton {
     color: var(--accent-color);
+}
+
+#searchbar:focus ~ #searchbar:active {
+    color: var(--on-hover);
 }
