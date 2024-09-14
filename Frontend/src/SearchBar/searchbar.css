@@ -6,7 +6,7 @@
     left: 3vh;
     width: calc(100vw - 6vh);
     height: 5vh;
-    padding: 0 5vh 3px 4vh;
+    padding: 0 5vh 0 4vh;
 
     border: none;
     outline: none;
@@ -22,7 +22,7 @@
 
 #searchbutton {
     position: absolute;
-    top: 4.25vh;
+    top: 4vh;
     right: 5vh;
     color: var(--background-color);
     font-variation-settings: 'FILL' 0, 'wght' 500, 'GRAD' 0, 'opsz' 24;
