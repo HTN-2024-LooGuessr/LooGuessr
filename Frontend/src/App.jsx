@@ -4,7 +4,7 @@ import Home from "./pages/Home.jsx";
 import Photo from "./pages/Photo.jsx";
 import Login from "./pages/Login.jsx";
 import Register from "./pages/Register.jsx";
-import NavBar from "./NavBar/Navbar.jsx";
+import NavBar from "./NavBar/navbar.jsx";
 
 
 export default function App() {
