@@ -1,0 +1,38 @@
+
+#friendList {
+    box-sizing: border-box;
+    height: 100vh;
+    padding-top: 12vh;
+    overflow-y: scroll;
+}
+
+.friend {
+    box-sizing: border-box;
+    display: flex;
+    height: 8vh;
+    width: 100vw;
+    padding: 0 4vh;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    align-items: center;
+    transition: background-color 100ms ease-in;
+}
+
+.friendName {
+    font-size: 2vh;
+    font-weight: 500;
+    font-family: system-ui;
+    color: white;
+}
+
+.profileImg {
+    height: 4.5vh;
+    width: 4.5vh;
+    margin-right: 2vh;
+    border-radius: 100%;
+}
+
+.friend:hover {
+    background-color: var(--primary-color);
+}
