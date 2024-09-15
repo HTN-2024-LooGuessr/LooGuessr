@@ -6,10 +6,11 @@ import Guess from "../Guess/Guess"
 
 export default function Story() {
     async function onBack(ev) {
-        const story = document.getElementById("story");
+        const story = document.getElementById("story"), navbar = document.getElementById("navbar");
         story.style.opacity = "0";
         story.style.pointerEvents = "none";
-        document.getElementById("navbar").style.opacity = 1;
+        navbar.style.opacity = 1;
+        navbar.style.visibility = "";
         await new Promise(r => setTimeout(r, 500));
     }
 

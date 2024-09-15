@@ -8,46 +8,28 @@ import { Path } from "@mappedin/react-sdk";
 function ResultCustomComponent() {
     const {mapData, mapView} = useMap();
 
+    mapView.Labels.removeAll()
     // const [navi, setNavi] = useState <Mappedin.Directions | undefined> (undefined);
     const lastUserGuess = JSON.parse(localStorage.getItem("lastUserGuess") || '{}');
     const userguess = new Mappedin.Coordinate(lastUserGuess[0], lastUserGuess[1], lastUserGuess[2]);
 
     //hard code
     const index = localStorage.getItem("index");
-    b: Boolean = index ? JSON.parse(index) : false;
-    
-    if (b) {
-      const actuallocation = new Mappedin.Coordinate(43.47276, -80.53937, "m_d1a647643658e985");
-    } else {
-      const actuallocation = new Mappedin.Coordinate(43.47276, -80.53937, "m_d1a647643658e985");
-    }
-    
-    
+    const b = index ? JSON.parse(index) : false;
+    const actuallocation = new Mappedin.Coordinate(43.47276, -80.53937, "m_d1a647643658e985");
+
+    console.log("Actual: ", actuallocation);
+    console.log("Guess: ", userguess)
     const directions = mapView.getDirections(userguess, actuallocation);
-    const distance = (directions?.distance);
-    console.log(distance);
-    const points = 10000 / distance;
 
-    useEffect(() => {
-        mapView.Labels.removeAll()
+    console.log(directions);
+    const distance = (directions?.distance) == null ? 10000 : directions.distance;
+    const points = (10000 / distance).toFixed(0);
+    localStorage.setItem("points", `${+localStorage.getItem("points") + points}`);
 
-        const lastUserGuess = JSON.parse(localStorage.getItem("lastUserGuess") || '{}');
-        const userguess = new Mappedin.Coordinate(lastUserGuess[0], lastUserGuess[1], lastUserGuess[2]);
-
-        const index = localStorage.getItem("index");
-        b: Boolean = index ? JSON.parse(index) : false;
-        if (b) {
-          const actuallocation = new Mappedin.Coordinate(43.47276, -80.53937, "m_d1a647643658e985");
-          localStorage.setItem("index", JSON.stringify(false));
-        } else {
-        const actuallocation = new Mappedin.Coordinate(43.47276, -80.53937, "m_d1a647643658e985");}
-
-        mapView.Labels.add(userguess, 'Your Guess');
-        mapView.Labels.add(actuallocation, "Actual Location");  
-        mapView.expand()
-    },
-    [mapView] //whenever mapView is changed
-    )
+    mapView.Labels.add(userguess, 'Your Guess');
+    mapView.Labels.add(actuallocation, "Actual Location");  
+    mapView.expand();
     
     //return  <Navigation directions={directions} />)
 
@@ -58,8 +40,7 @@ function ResultCustomComponent() {
     return (
       <>
         {/* Display Points in a Bubble at the Top Center */}
-        <div
-          style={{
+        <div style={{
             position: "fixed", // Fixed at the top
             top: "20px", // Margin from the top
             left: "50%", // Center horizontally
@@ -71,10 +52,11 @@ function ResultCustomComponent() {
             fontSize: "18px", // Slightly larger text
             boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)", // A bit of shadow for depth
             zIndex: 1000, // Make sure it's on top of everything else
-          }}
-        >
-          Distance: {distance + "m"}
-          Points: {points}
+        }}>
+            <pre className="results">
+                Distance: {distance.toFixed(0) + "m\n"}
+                Points: {points}
+            </pre> 
         </div>
         
         <Path coordinate={directions.coordinates} />

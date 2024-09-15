@@ -21,24 +21,23 @@ function GuessCustomComponent() {
         setGuess(true);
 
         mapView.Labels.removeAll(); 
-        setEventCoordinate([event.coordinate.latitude, event.coordinate.longitude]);
+        setEventCoordinate([event.coordinate.latitude, event.coordinate.longitude, curFloorID]);
 
         return mapView.Labels.add(new Mappedin.Coordinate(event.coordinate.latitude, event.coordinate.longitude, curFloorID), 'Your Guess');
     }) 
 
     // Function to store guess coordinates in localStorage
     function storeCoordsLocally() {
-        console.log("Coordinates", eventCoordinate)
         localStorage.setItem("lastUserGuess", JSON.stringify(eventCoordinate));
-        
+        window.location.assign("/LooGuessr/results");
     };
 
     return (
         <>
         <select
         onChange={(e) => {
-          setCurFloorID(e.target.value);
-          mapView.setFloor(e.target.value);
+            setCurFloorID(e.target.value);
+            mapView.setFloor(e.target.value);
         }}
         id="dropdownFloor"
         title="level select"

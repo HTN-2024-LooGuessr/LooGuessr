@@ -16,8 +16,6 @@ export default function FriendList(props) {
     const loadFriends = useCallback(async () => {
         axios.get(`http://localhost:5555/user/`)
             .then((res) => {
-                // let processed = processQuery(res.data.data)
-                // console.log(processed)
                 const processed = res.data.data.filter(f => f._id !== props.uid)
                 setFriends(processed)
                 setProcessedFriends(processed);
@@ -114,7 +112,9 @@ function Friend(props) {
 
         if (image != null && image.indexOf("data:") != -1) { //You haven't made a guess / You haven't viewed their new image
             const story = document.getElementById("story"), storyImg = document.getElementById("storyImage");
-            document.getElementById("navbar").style.opacity = 0;
+            const navbar = document.getElementById("navbar");
+            navbar.style.opacity = 0;
+            navbar.style.visibility = "hidden"
             
             await new Promise(r => setTimeout(r, 50));
             storyImg.style.background = `url(${image})`;

@@ -6,6 +6,7 @@ import Login from "./pages/Login.jsx";
 import Register from "./pages/Register.jsx";
 import NavBar from "./NavBar/navbar.jsx";
 import Profile from "./pages/Profile.jsx";
+import Result from "./Result/Result.tsx";
 import {useNavigate} from "react-router-dom";
 
 export default function App() {
@@ -17,6 +18,11 @@ export default function App() {
         localStorage.removeItem("uid")
     }
 
+    if (localStorage.getItem("uid") == null && !window.location.pathname.includes("login")) {
+        localStorage.setItem("points", "0");
+        window.location.assign("/LooGuessr/login");
+    }
+
     return (
         <>
             <Routes>
@@ -25,6 +31,7 @@ export default function App() {
                 <Route path='LooGuessr/login' element={<Login uid={localStorage.getItem("uid")} login={login}></Login>}/>
                 <Route path='LooGuessr/register' element={<Register></Register>}/>
                 <Route path='LooGuessr/profile' element={<Profile uid={localStorage.getItem("uid")} logout={logout}></Profile>}/>
+                <Route path='LooGuessr/results' element={<Result></Result>}></Route>
             </Routes>
             <NavBar></NavBar>
         </>
