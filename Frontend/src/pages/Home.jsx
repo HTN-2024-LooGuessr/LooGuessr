@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import FriendList from "../Friends/Friends.jsx";
+import Story from "../Friends/Story.jsx"
 import SearchBar from '../SearchBar/searchbar.jsx';
 import PropTypes from "prop-types";
 
@@ -10,6 +11,7 @@ export default function Home(props) {
             <button onClick={props.logout}>Logout</button>
             <SearchBar setSearchParam={setSearchParam}></SearchBar>
             <FriendList searchParam={searchParam}></FriendList>
+            <Story></Story>
         </>
     );
 }

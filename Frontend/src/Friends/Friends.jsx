@@ -56,80 +56,35 @@ export default function FriendList(props) {
     );
 }
 
+export function handleMapGuess() { //NAMAN
+
+}
+
 function Friend(props) {
-    function handleMapGuess() { //NAMAN
+    function toggleStory(displayMap) {
+        const map = document.getElementById("guessMap"), image = document.getElementById("storyImage"), 
+              switchIcon = document.getElementById("storySwapIcon");
 
-    }
+        if (displayMap) {
+            image.style.opacity = 0;
+            image.style.pointerEvents = "none";
 
-    function createStory(imageURL, displayGuesses = false) {
-        const story = document.createElement("div");
-        story.className = "story";
-        story.style = `background-color: red; opacity: 0;`;
+            map.style.opacity = 1;
+            map.style.pointerEvents = "";
 
-        const backButton = document.createElement("button");
-        backButton.id = "backButton";
-        backButton.className = "storyButton";
-        backButton.addEventListener("click", async ev => {
-            story.style.opacity = "0";
-            story.style.pointerEvents = "none";
-            document.getElementById("navbar").style.opacity = 1;
-            await new Promise(r => setTimeout(r, 500));
-            if (story.parentElement == document.body) document.body.removeChild(story);
-        })
-
-        const backIcon = document.createElement("span");
-        backIcon.id = "backButtonIcon";
-        backIcon.className = "material-symbols-rounded";
-        backIcon.textContent = "arrow_back_ios";
-        backIcon.style = "width: 1.75vh; font-size: 3.5vh";
-
-        const switchButton = document.createElement("button");
-        switchButton.id = "storySwapButton";
-        switchButton.className = "storyButton";
-
-        const switchIcon = document.createElement("span");
-        switchIcon.className = "material-symbols-rounded";
-        switchIcon.id = "storySwapIcon";
-        switchIcon.style = "font-size: 4vh; font-variation-settings: 'FILL' 1, 'wght' 300, 'GRAD' 0, 'opsz' 24;";
-
-        const image = document.createElement('div');
-        image.className = "storyImage";
-        image.style = `background: url(${imageURL}); background-color: green`;
-
-        const map = document.createElement("div");
-        map.className = "mapContainer";
-        map.style = "";
-
-        if (displayGuesses) {
-            story.appendChild(map);
             switchIcon.textContent = "image";
             switchIcon.style.fontVariationSettings = "font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;";
+            handleMapGuess();
         } else {
-            story.appendChild(image);
+            map.style.opacity = 0;
+            map.style.pointerEvents = "none";
+
+            image.style.opacity = 1;
+            image.style.pointerEvents = "";
+            
             switchIcon.textContent = "person_pin_circle";
+            switchIcon.style.fontVariationSettings = "font-variation-settings: 'FILL' 1, 'wght' 300, 'GRAD' 0, 'opsz' 24;";
         }
-
-        switchButton.addEventListener("click", ev => {
-            if (switchIcon.textContent == "person_pin_circle") {
-                story.removeChild(image);
-                story.appendChild(map);
-                switchIcon.textContent = "image";
-                switchIcon.style.fontVariationSettings = "font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;";
-                handleMapGuess();
-            } else {
-                story.removeChild(map);
-                story.appendChild(image);
-                switchIcon.textContent = "person_pin_circle";
-                switchIcon.style.fontVariationSettings = "font-variation-settings: 'FILL' 1, 'wght' 300, 'GRAD' 0, 'opsz' 24;";
-            }
-        });
-
-        backButton.appendChild(backIcon);
-        switchButton.appendChild(switchIcon);
-        story.appendChild(backButton);
-        story.appendChild(switchButton);
-
-        return story;
     }
 
     async function click() {
@@ -143,11 +98,17 @@ function Friend(props) {
             case "noPhotos": //User hasn't posted a photo yet (or their photo expired after 24 hours); Do Nothing
                 break;
             default: //You hasn't made a guess / You haven't viewed their new image; show their image
-                const story = createStory(response.image, response.status == "guessMade");
-                document.body.appendChild(story);   
+                const story = document.getElementById("story");
                 document.getElementById("navbar").style.opacity = 0;
+                if (response.status == "guessMade") { //Display Map instead
+
+                } else {  //Display Image 
+                    
+                }
+                toggleStory(story, response.status == "guessMade");
                 await new Promise(r => setTimeout(r, 50));
                 story.style.opacity = "1";
+                story.style.pointerEvents = "all";
                 break;
         }
     }
