@@ -15,13 +15,17 @@ const userSchema = new Schema({
         type : String,
         required: true
     },
-    photo : {
-        type : Buffer
+    image : {
+        type : Buffer,
+        contentType: String
     },
     long : {
         type : Number
     },
     lat : {
+        type : Number
+    },
+    alt : {
         type : Number
     },
     friends : {

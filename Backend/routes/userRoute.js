@@ -1,6 +1,6 @@
 import express from "express";
 import {User} from "../models/userModel.js";
-import bcrypt from 'bcrypt';
+import bcrypt, {hash} from 'bcrypt';
 
 const router = express.Router();
 
@@ -86,17 +86,84 @@ router.get('/:id', async (request, response) => {
     }
 });
 
+// Get user by letter
+router.get('/:search', async (request, response) => {
+    try{
+        const search = request.params.search;
+        const user = await User.find({username: search})
+        return response.status(200).json(user);
+    }catch(error){
+        console.log(error.message);
+        response.status(500).send({message: error.message});
+    }
+});
+
 // Update user
 //TODO: need to revisit this function
-router.put('/:id', async (request, response) => {
+// router.put('/image/:id', async (request, response) => {
+//     try{
+//         const id = request.params.id; // getting id from the parameters
+//
+//         if (request.body.password !== undefined) {
+//             const salt = await bcrypt.genSalt(10)
+//             const hashedPassword = await bcrypt.hash(request.body.password, salt)
+//             console.log(hashedPassword)
+//         }
+//
+//         let bufferedImage = Buffer.from(request.body.image, 'base64')
+//
+//         const data = {
+//             image: bufferedImage,
+//             // long: request.body.longitude,
+//             // lat: request.body.latitude,
+//             // alt: request.body.altitude
+//         }
+//         const result = await User.findByIdAndUpdate(id, data); // uses the object literal to update the values present with the id
+//         if (!result){
+//             return response.status(404).json({message : 'User not found'});
+//         }
+//         return response.status(200).json(request.body);
+//     }catch(error){
+//         console.log(error.message);
+//         response.status(500).send({message: error.message});
+//     }
+// });
+
+router.put('/pw/:id', async (request, response) => {
     try{
         const id = request.params.id; // getting id from the parameters
 
-        if (request.body.password !== undefined) {
-            const salt = await bcrypt.genSalt(10)
-            const hashedPassword = await bcrypt.hash(request.body.password, salt)
-            console.log(hashedPassword)
+        // if (request.body.password !== undefined) {
+        //     const salt = await bcrypt.genSalt(10)
+        //     const hashedPassword = await bcrypt.hash(request.body.password, salt)
+        //     console.log(hashedPassword)
+        // }
+        const salt = await bcrypt.genSalt(10)
+        const hashedPassword = await bcrypt.hash(request.body.password, salt)
+        console.log(hashedPassword)
+
+        // let bufferedImage = Buffer.from(request.body.image, 'base64')
+
+        const data = {
+            pw: hashedPassword,
+            // long: request.body.longitude,
+            // lat: request.body.latitude,
+            // alt: request.body.altitude
         }
+        const result = await User.findByIdAndUpdate(id, data); // uses the object literal to update the values present with the id
+        if (!result){
+            return response.status(404).json({message : 'User not found'});
+        }
+        return response.status(200).json(request.body);
+    }catch(error){
+        console.log(error.message);
+        response.status(500).send({message: error.message});
+    }
+});
+
+router.put('/:id', async (request, response) => {
+    try{
+        const id = request.params.id; // getting id from the parameters
 
         const result = await User.findByIdAndUpdate(id, request.body); // uses the object literal to update the values present with the id
         if (!result){
