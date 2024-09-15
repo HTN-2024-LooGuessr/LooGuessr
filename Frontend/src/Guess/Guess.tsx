@@ -14,7 +14,8 @@ import "@mappedin/react-sdk/lib/esm/index.css";
 function GuessCustomComponent() {
   const { mapData, mapView } = useMap();
   console.log(mapView.currentFloor)
-  const [curFloorID, setCurFloorID] = useState("")
+  const [curFloorID, setCurFloorID] = useState("m_e6c96a31fba4ef51")
+
   const [eventCoordinate, setEventCoordinate] = useState({})
   // var curFloorID: string;
   // var guess: boolean = false;
@@ -33,7 +34,7 @@ function GuessCustomComponent() {
     
     console.log(guess);
     mapView.Labels.removeAll(); 
-    setEventCoordinate([event.coordinate.latitude, event.coordinate.longitude]);
+    setEventCoordinate([event.coordinate.latitude, event.coordinate.longitude, curFloorID]);
     // setEventCoordinate(new Mappedin.Coordinate(event.coordinate.latitude, event.coordinate.longitude, curFloorID));
     
     //ADD TO THE DB WITH THE USER
@@ -83,7 +84,7 @@ function GuessCustomComponent() {
       <button id = 'namanbutton' onClick = {storeCoordsLocally}
       style={{
         position: "fixed", // Fixed position so it floats
-        bottom: "30px", // Slight margin from the bottom
+        bottom: "10%", // Slight margin from the bottom
         left: "50%", // Center horizontally
         transform: "translateX(-50%)", // Align center horizontally
         width: "200px", // Larger width for pill shape

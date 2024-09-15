@@ -5,6 +5,8 @@ import Photo from "./pages/Photo.jsx";
 import Login from "./pages/Login.jsx";
 import Register from "./pages/Register.jsx";
 import NavBar from "./NavBar/navbar.jsx";
+import Guess from "./Guess/Guess.tsx";
+import Result from "./Result/Result.tsx";
 
 
 export default function App() {
@@ -12,7 +14,7 @@ export default function App() {
         <>
             <Routes>
                 <Route path='LooGuessr/' element={<Home></Home>}/>
-                <Route path='LooGuessr/photo' element={<Photo></Photo>}/>
+                <Route path='LooGuessr/photo' element={<Result></Result>}/>
                 <Route path='LooGuessr/login' element={<Login></Login>}/>
                 <Route path='LooGuessr/register' element={<Register></Register>}/>
                 <Route path='LooGuessr/profile'/>
