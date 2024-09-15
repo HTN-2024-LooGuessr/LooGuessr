@@ -24,6 +24,14 @@ export default function FriendList(props) {
             }).catch((error) => {
                 console.log(error)
         })
+       /*const processed = [ { username: "shougan_gu", image: "...", guessed: [] },
+                           { username: "SaarujanS", image: "", guessed: [] },
+                           { username: "NBMaster", image: "", guessed: [] },
+                           { username: "jzhu19", image: "", guessed: [] },
+                           { username: "bob2006", image: "...", guessed: [] },
+                           { username: "nbiyani", image: "...", guessed: [] },
+                           { username: "htn2024", image: "...", guessed: [] }  ]
+       setFriends()*/
     }, [])
     
     useEffect(() => {
@@ -32,13 +40,6 @@ export default function FriendList(props) {
             console.log(friends)
         };
         loadData();
-
-        // setFriends((friends) => friends.filter(f => f.username.includes(props.searchParam)))
-        // for (let i = 0; i < friends.length; i++){
-        //     if (friends[i].username.includes(props.searchParam)){
-        //         setProcessedFriends([...processedFriends, friends[i]])
-        //     }
-        // }
     }, [loadFriends]);
     
     useEffect(() => {

@@ -7,10 +7,10 @@ import {useNavigate} from "react-router-dom";
 
 export default function Home(props) {
     const [searchParam, setSearchParam] = useState("");
-
+    
     if (localStorage.getItem("uid") == null && !window.location.pathname.includes("login")) {
         localStorage.setItem("points", "0");
-        window.location.assign("/LooGuessr#login");
+        window.location.assign("/LooGuessr#/login");
     }
 
     return (

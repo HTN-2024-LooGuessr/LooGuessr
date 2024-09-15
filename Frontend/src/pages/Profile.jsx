@@ -4,7 +4,7 @@ import axios from "axios";
 import "../profile.css"
 
 export default function Profile(props) {
-    if (localStorage.getItem("uid") == null) window.location.assign("/LooGuessr#login");
+    if (localStorage.getItem("uid") == null) window.location.assign("/LooGuessr#/login");
     
     const [friends, setFriends] = useState([])
     const loadFriends = useCallback(async () => {
@@ -20,7 +20,7 @@ export default function Profile(props) {
         function logout() {
             localStorage.removeItem("username");
             localStorage.removeItem("uid");
-            window.location.assign("/LooGuessr#login");
+            window.location.assign("/LooGuessr#/login");
         }
 
         document.getElementById("logoutButton").onclick = logout;
@@ -35,7 +35,7 @@ export default function Profile(props) {
 
     if (localStorage.getItem("uid") == null && !window.location.pathname.includes("login")) {
         localStorage.setItem("points", "0");
-        window.location.assign("/LooGuessr#login");
+        window.location.assign("/login");
     }
 
     return (
