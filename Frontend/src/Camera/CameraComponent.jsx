@@ -25,9 +25,9 @@ export default function CameraComponent() {
         navigator.geolocation.getCurrentPosition(pos => {
             data = {
                 image: canvas.toDataURL("image/jpeg"),
-                latitude: pos.coords.latitude,
-                longitude: pos.coords.longitude,
-                altitude: pos.coords.altitude ? pos.coords.altitude : 0,
+                lat: pos.coords.latitude,
+                long: pos.coords.longitude,
+                alt: pos.coords.altitude ? pos.coords.altitude : 0,
                 // timestamp: pos.timestamp
                 };
             loadImageInfo()
