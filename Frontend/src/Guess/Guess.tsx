@@ -73,7 +73,8 @@ function GuessCustomComponent() {
                     display: "flex", // Flexbox to center content
                     justifyContent: "center", // Center text horizontally
                     alignItems: "center", // Center text vertically
-                    boxShadow: "0 0 5px rgb(0 0 0 / 25%)"
+                    boxShadow: "0 0 5px rgb(0 0 0 / 25%)",
+                    transition: "background-color 150ms ease-in"
                 }} disabled={!guess}>
                 Submit Guess!
             </button>

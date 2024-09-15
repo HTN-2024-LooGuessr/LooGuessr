@@ -85,7 +85,6 @@
     background-color: var(--on-hover);
 }
 
-#namanbutton {
-    transition: background-color 150ms ease-in;
-    background-color: var(--on-hover);
+#namanbutton:active {
+    background-color: var(--on-hover) !important;
 }
