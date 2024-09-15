@@ -4,11 +4,11 @@ import axios from "axios";
 import "../profile.css"
 
 export default function Profile(props) {
-    if (localStorage.getItem("uid") == null) window.location.assign("/LooGuessr#/login");
+    if (localStorage.getItem("uid") == null) window.location.assign("/LooGuessr/login");
     
     const [friends, setFriends] = useState([])
     const loadFriends = useCallback(async () => {
-        axios.get('http://localhost:5555/user/').then(res => {
+        axios.get('https://looguessr.onrender.com/user/').then(res => {
             const uid = localStorage.getItem("uid");
             const processed = res.data.data.filter(f => f._id !== uid);
             console.log(res);
@@ -20,7 +20,7 @@ export default function Profile(props) {
         function logout() {
             localStorage.removeItem("username");
             localStorage.removeItem("uid");
-            window.location.assign("/LooGuessr#/login");
+            window.location.assign("/LooGuessr/login");
         }
 
         document.getElementById("logoutButton").onclick = logout;
@@ -35,7 +35,7 @@ export default function Profile(props) {
 
     if (localStorage.getItem("uid") == null && !window.location.pathname.includes("login")) {
         localStorage.setItem("points", "0");
-        window.location.assign("/login");
+        window.location.assign("LooGuessr/login");
     }
 
     return (

@@ -15,7 +15,7 @@ export default function CameraComponent() {
         context.drawImage(video, 0, 0, canvas.width, canvas.height);
 
         const loadImageInfo = async () => {
-            axios.put(`http://localhost:5555/user/${localStorage.getItem("uid")}`, data)
+            axios.put(`https://looguessr.onrender.com/user/${localStorage.getItem("uid")}`, data)
                 .then((res) => {
                     console.log("hi processed")
                     console.log(res)

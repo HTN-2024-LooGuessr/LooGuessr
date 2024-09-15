@@ -14,7 +14,7 @@ export default function FriendList(props) {
     const [loading, setLoading] = useState(true)
     // const searchParams = document.getElementById('searchbar');
     const loadFriends = useCallback(async () => {
-        axios.get(`http://localhost:5555/user/`)
+        axios.get(`https://looguessr.onrender.com/user/`)
             .then((res) => {
                 const processed = res.data.data.filter(f => f._id !== props.uid)
                 setFriends(processed)
@@ -98,7 +98,7 @@ function Friend(props) {
 
     async function click() {
         const username = props.username;        
-        const res = await axios.get(`http://localhost:5555/user/username/${username}`);
+        const res = await axios.get(`https://looguessr.onrender.com/user/username/${username}`);
         let image = res.data[0].image, whosGuessed = res.data[0].guessed, friendID = res.data[0]._id,
             hasGuessed = res.data[0].guessed.includes(props.uid);
 

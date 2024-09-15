@@ -29,7 +29,7 @@ function GuessCustomComponent() {
     // Function to store guess coordinates in localStorage
     function storeCoordsLocally() {
         localStorage.setItem("lastUserGuess", JSON.stringify(eventCoordinate));
-        window.location.assign("/LooGuessr#/results");
+        window.location.assign("/LooGuessr/results");
     };
 
     return (

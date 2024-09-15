@@ -17,7 +17,7 @@ export default function Login(props) {
             const pw = document.getElementById("pw").value;
             console.log(email + " " + pw)
             e.preventDefault()
-            axios.post("http://localhost:5555/user/login", {
+            axios.post("https://looguessr.onrender.com/user/login", {
                 email: email,
                 password: pw
             }).then((res) => {
@@ -38,7 +38,7 @@ export default function Login(props) {
 
         const uid = localStorage.getItem("uid");
         if (uid != null) {
-            axios.post("http://localhost:5555/user/login", {
+            axios.post("https://looguessr.onrender.com/user/login", {
                 uid: uid
             }).then(res => {
                 if (res.data.verdict) localStorage.setItem("username", res.data.username);
@@ -51,7 +51,7 @@ export default function Login(props) {
 
     if (localStorage.getItem("uid") == null && !window.location.pathname.includes("login")) {
         localStorage.setItem("points", "0");
-        window.location.assign("/LooGuessr#/login");
+        window.location.assign("/LooGuessr/login");
     }
     
     return (
