@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import {Routes, Route} from "react-router-dom";
 import Home from "./pages/Home.jsx";
 import Photo from "./pages/Photo.jsx";
@@ -7,7 +7,6 @@ import Register from "./pages/Register.jsx";
 import NavBar from "./NavBar/navbar.jsx";
 import Profile from "./pages/Profile.jsx";
 import {useNavigate} from "react-router-dom";
-import { useState, useEffect } from "react";
 
 export default function App() {
     const [uid, setUid] = useState("");
