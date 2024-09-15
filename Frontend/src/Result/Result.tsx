@@ -28,7 +28,7 @@ function ResultCustomComponent() {
     localStorage.setItem("points", `${+localStorage.getItem("points") + points}`);
 
     mapView.Labels.add(userguess, 'Your Guess');
-    mapView.Labels.add(actuallocation, "Actual Location");  
+    mapView.Labels.add(actuallocation, "Actual Location");
     mapView.expand();
     const navbar = document.getElementById("navbar");
     navbar.style.opacity = "1";
@@ -59,7 +59,7 @@ function ResultCustomComponent() {
             <pre className="results">
                 Distance: {distance.toFixed(0) + "m\n"}
                 Points: {points}
-            </pre> 
+            </pre>
         </div>
         
         <Path coordinate={directions.coordinates} />
