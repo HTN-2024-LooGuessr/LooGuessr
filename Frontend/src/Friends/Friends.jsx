@@ -128,7 +128,7 @@ function Friend(props) {
 
     return (
         <button className="friend" onClick={click}>
-            <img className="profileImg" src={props.imgSrc}></img>
+            <img className="friendPFP" src={props.imgSrc}></img>
             <pre className="friendName" id={`friend-${props.username}-id`}>{props.username}</pre>
         </button>
     )

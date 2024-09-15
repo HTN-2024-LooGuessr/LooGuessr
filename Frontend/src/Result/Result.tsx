@@ -30,6 +30,9 @@ function ResultCustomComponent() {
     mapView.Labels.add(userguess, 'Your Guess');
     mapView.Labels.add(actuallocation, "Actual Location");  
     mapView.expand();
+    const navbar = document.getElementById("navbar");
+    navbar.style.opacity = "1";
+    navbar.style.visibility = "";
     
     //return  <Navigation directions={directions} />)
 
@@ -46,7 +49,7 @@ function ResultCustomComponent() {
             left: "50%", // Center horizontally
             transform: "translateX(-50%)", // Perfectly center by offsetting 50%
             padding: "10px 20px", // Padding for a bubble-like appearance
-            backgroundColor: "#4caf50", // Light green color for the bubble
+            backgroundColor: "var(--accent-color)", // Light green color for the bubble
             color: "white", // White text color
             borderRadius: "25px", // Rounded for the bubble shape
             fontSize: "18px", // Slightly larger text
@@ -60,27 +63,6 @@ function ResultCustomComponent() {
         </div>
         
         <Path coordinate={directions.coordinates} />
-
-        <button id = 'shougunbutton' // onClick = {/*JONATHAN DO ROUTING*/}
-          style={{
-            position: "fixed", // Fixed position so it floats
-            bottom: "30px", // Slight margin from the bottom
-            left: "50%", // Center horizontally
-            transform: "translateX(-50%)", // Align center horizontally
-            width: "200px", // Larger width for pill shape
-            height: "50px", // Shorter height
-            borderRadius: "25px", // High border radius for rounded pill shape
-            backgroundColor: "green", // Green if guess exists, grey otherwise
-            color: "white",
-            fontSize: "18px", // Text size
-            display: "flex", // Flexbox to center content
-            justifyContent: "center", // Center text horizontally
-            alignItems: "center", // Center text vertically
-            // cursor: guess ? "pointer" : "not-allowed", // Disabled style if no guess
-          }}
-        >
-        Home
-        </button>
       </>
       )
 }

@@ -73,6 +73,13 @@
     right: 2vh;
 }
 
+.friendPFP {
+    height: 5vh;
+    width: 5vh;
+    margin-right: 2vh;
+    border-radius: 100%;
+}
+
 .storyImage {
     position: absolute;
     top: 0;
