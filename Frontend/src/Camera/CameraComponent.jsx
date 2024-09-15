@@ -23,14 +23,10 @@ export default function CameraComponent() {
                 // timestamp: pos.timestamp
                 };
 
-            const loadImageInfo = useCallback(async () => {
-                axios.put(`http://localhost:5555/user/${_id}`, data)
-                    .then((res) => {
-                        console.log("hi processed")
-                        console.log(res)
-                    })
-                    .catch((error) => console.log(error))
-            })
+            axios.put(`http://localhost:5555/user/${_id}`, data).then((res) => {
+                console.log("hi processed")
+                console.log(res)
+            }).catch((error) => console.log(error));
             
             loadImageInfo()
         })

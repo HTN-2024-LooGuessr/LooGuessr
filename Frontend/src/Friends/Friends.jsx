@@ -105,11 +105,12 @@ export function Friend(props) {
         //const [friendID, setFriendID] = useState("")
         let image, whosGuessed, guessed, friendID;
 
-        axios.get(`http://localhost:5555/username/${username}`).then((res) => {
-            image = res.data.data.image;
-            whosGuessed = res.data.data.guessed;
-            friendID = res.data.data._id;
-            guessed = res.data.data.guessed.includes(props.uid);
+        
+        await axios.get(`http://localhost:5555/user/username/${username}`).then((res) => {
+            image = res.data[0].image;
+            whosGuessed = res.data[0].guessed;
+            friendID = res.data[0]._id;
+            guessed = res.data[0].guessed.includes(props.uid);
         }).catch((error) => console.log(error));
 
         //move somewhere around here
