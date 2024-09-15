@@ -6,24 +6,38 @@
 }
 
 .header {
+    position: absolute;
     display: flex;
+    top: 6vh;
+    width: 100vw;
+    padding: 0 8vw;
 }
-
 
 .name {
     font-size: 6vh;
     font-weight: 500;
     font-family: system-ui;
     color: white;
-    margin-top: 0;
-    margin-bottom: 0;
+    margin: 0 2vh;
 }
 
 .logout {
     color: white;
 }
 
-.logoutButton{
+.logoutButton {
+    position: absolute;
+    top: 1vh;
+    left: 85vw;
+    width: 7vh;
+    height: 7vh;
+    background-color: var(--accent-color);
+    border-radius: 12px;
     border: none;
-    background-color: inherit;
+    outline: none;
+    transition: background-color 150ms ease-in;
+}
+
+.logoutButton:active {
+    background-color: var(--on-hover);
 }

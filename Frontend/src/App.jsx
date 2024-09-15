@@ -9,32 +9,22 @@ import Profile from "./pages/Profile.jsx";
 import {useNavigate} from "react-router-dom";
 
 export default function App() {
-    const [uid, setUid] = useState("");
-
-    useEffect(() => {
-        if (localStorage.getItem("uid") !== null) {
-            setUid(localStorage.getItem("uid"))
-        }
-    }, [])
-
     async function login(uid = ""){
-        setUid(uid)
         localStorage.setItem("uid", uid);
     }
 
     async function logout() {
-        setUid("")
         localStorage.removeItem("uid")
     }
 
     return (
         <>
             <Routes>
-                <Route path='LooGuessr/' element={<Home uid={uid} logout={logout}></Home>}/>
-                <Route path='LooGuessr/photo' element={<Photo uid={uid}></Photo>}/>
-                <Route path='LooGuessr/login' element={<Login uid={uid} login={login}></Login>}/>
+                <Route path='LooGuessr/' element={<Home uid={localStorage.getItem("uid")} logout={logout}></Home>}/>
+                <Route path='LooGuessr/photo' element={<Photo uid={localStorage.getItem("uid")}></Photo>}/>
+                <Route path='LooGuessr/login' element={<Login uid={localStorage.getItem("uid")} login={login}></Login>}/>
                 <Route path='LooGuessr/register' element={<Register></Register>}/>
-                <Route path='LooGuessr/profile' element={<Profile uid={uid} logout={logout}></Profile>}/>
+                <Route path='LooGuessr/profile' element={<Profile uid={localStorage.getItem("uid")} logout={logout}></Profile>}/>
             </Routes>
             <NavBar></NavBar>
         </>

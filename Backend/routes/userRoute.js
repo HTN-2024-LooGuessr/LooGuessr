@@ -46,14 +46,25 @@ router.post('/register', async (request, response) => {
 //for checking login validity for now
 router.post('/login', async (request, response) => {
     try {
-        const user = await User.findOne({email: request.body.email});
-
-        if (user && await bcrypt.compare(request.body.password, user.password)) {
-            console.log(user._id);
-            return response.json({
-                verdict : 1, // 1 for true or accepted login
-                _id : user._id
-            })
+        if (request.body.uid != null) {
+            const user = await User.findById({ uid });
+            if (user) {
+                console.log(user._id);
+                return response.json({
+                    verdict: 1,
+                    username: user.username
+                });
+            }
+        } else {
+            const user = await User.findOne({email: request.body.email});
+    
+            if (user && await bcrypt.compare(request.body.password, user.password)) {
+                console.log(user._id);
+                return response.json({
+                    verdict : 1, // 1 for true or accepted login
+                    _id : user._id
+                })
+            }
         }
 
         return response.json({

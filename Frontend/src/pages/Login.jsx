@@ -19,15 +19,26 @@ export default function Login(props) {
             }).then((res) => {
                 console.log(res.data.verdict)
                 if (res.data.verdict) {
-                    props.login(res.data._id)
+                    localStorage.setItem("username", email);
+                    localStorage.setItem("uid", res.data._id);
                     navigate("/LooGuessr")
-                }else {
+                } else {
                     alert("Incorrect password or email")
                 }
             }).catch((error) => {
                 console.log(error)
             })
         }
+
+        const uid = localStorage.getItem("uid");
+        if (uid != null) {
+            axios.post("http://localhost:5555/user/login", {
+                uid: uid
+            }).then(res => {
+                if (res.data.verdict) localStorage.setItem("username", res.data.username);
+                navigate("/LooGuessr");
+            })
+        } 
 
         document.getElementById("loginForm").addEventListener("submit", handleSubmit);
     }, [])

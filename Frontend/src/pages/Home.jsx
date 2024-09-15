@@ -16,7 +16,3 @@ export default function Home(props) {
         </>
     );
 }
-
-Home.prototype = {
-    logout: PropTypes.func
-}
