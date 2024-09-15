@@ -34,11 +34,21 @@ function GuessCustomComponent() {
 
     return (
         <>
-        <select
+        <select 
         onChange={(e) => {
+<<<<<<< HEAD
           setCurFloorID(e.target.value);
           mapView.setFloor(e.target.value);
         }}
+=======
+            const sel = document.getElementById("dropdownFloor");
+            if (sel == null) return;
+            const floorNum = sel.options[sel.selectedIndex].textContent.split(" ")[1];
+            console.log(floorNum)
+            if (floorNum != undefined) setCurFloorNum(floorNum);
+            mapView.setFloor(e.target.value);
+        }} id="dropdownFloor"
+>>>>>>> 8f86e789ff54db31972b0dfafeef531b48e3330d
         title="level select"
         style={{ position: 'absolute', top: 10, left: 10, 
                 backgroundColor: 'rgb(170 100 180)', /* Purple background */
