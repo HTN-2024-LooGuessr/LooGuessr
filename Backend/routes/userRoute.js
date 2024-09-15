@@ -92,19 +92,19 @@ router.get('/:id', async (request, response) => {
 });
 
 // Get user by id
-router.get('/:username', async (request, response) => {
-    try{
-        const username = request.params.id;
-        const user = await User.findOne({username: username});
-        return response.status(200).json(user);
-    }catch(error){
-        console.log(error.message);
-        response.status(500).send({message: error.message});
-    }
-});
+// router.get('/:username', async (request, response) => {
+//     try{
+//         const uname = request.params.username;
+//         const user = await User.findOne({username: uname});
+//         return response.status(200).json(user);
+//     }catch(error){
+//         console.log(error.message);
+//         response.status(500).send({message: error.message});
+//     }
+// });
 
 // Get user by letter
-router.get('/:search', async (request, response) => {
+router.get('/username/:search', async (request, response) => {
     try{
         const search = request.params.search;
         const user = await User.find({username: search})
