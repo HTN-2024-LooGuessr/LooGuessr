@@ -12,8 +12,17 @@ function ResultCustomComponent() {
     const lastUserGuess = JSON.parse(localStorage.getItem("lastUserGuess") || '{}');
     const userguess = new Mappedin.Coordinate(lastUserGuess[0], lastUserGuess[1], lastUserGuess[2]);
 
-    //MONGO HERE
-    const actuallocation = new Mappedin.Coordinate(43.47276, -80.53937, "m_d1a647643658e985");
+    //hard code
+    const index = localStorage.getItem("index");
+    b: Boolean = index ? JSON.parse(index) : false;
+    
+    if (b) {
+      const actuallocation = new Mappedin.Coordinate(43.47276, -80.53937, "m_d1a647643658e985");
+    } else {
+      const actuallocation = new Mappedin.Coordinate(43.47276, -80.53937, "m_d1a647643658e985");
+    }
+    
+    
     const directions = mapView.getDirections(userguess, actuallocation);
     const distance = (directions?.distance);
     console.log(distance);
@@ -22,8 +31,17 @@ function ResultCustomComponent() {
     useEffect(() => {
         mapView.Labels.removeAll()
 
-        const userguess = new Mappedin.Coordinate(43.47308, -80.53953, "m_883f57e8a60ad67b");
-        const actuallocation = new Mappedin.Coordinate(43.47276, -80.53937, "m_d1a647643658e985");
+        const lastUserGuess = JSON.parse(localStorage.getItem("lastUserGuess") || '{}');
+        const userguess = new Mappedin.Coordinate(lastUserGuess[0], lastUserGuess[1], lastUserGuess[2]);
+
+        const index = localStorage.getItem("index");
+        b: Boolean = index ? JSON.parse(index) : false;
+        if (b) {
+          const actuallocation = new Mappedin.Coordinate(43.47276, -80.53937, "m_d1a647643658e985");
+          localStorage.setItem("index", JSON.stringify(false));
+        } else {
+        const actuallocation = new Mappedin.Coordinate(43.47276, -80.53937, "m_d1a647643658e985");}
+
         mapView.Labels.add(userguess, 'Your Guess');
         mapView.Labels.add(actuallocation, "Actual Location");  
         mapView.expand()
@@ -55,6 +73,7 @@ function ResultCustomComponent() {
             zIndex: 1000, // Make sure it's on top of everything else
           }}
         >
+          Distance: {distance + "m"}
           Points: {points}
         </div>
         
