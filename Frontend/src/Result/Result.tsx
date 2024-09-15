@@ -9,10 +9,15 @@ function ResultCustomComponent() {
     const {mapData, mapView} = useMap();
 
     // const [navi, setNavi] = useState <Mappedin.Directions | undefined> (undefined);
-    const userguess = new Mappedin.Coordinate(43.47308, -80.53953, "m_883f57e8a60ad67b");
+    const lastUserGuess = JSON.parse(localStorage.getItem("lastUserGuess") || '{}');
+    const userguess = new Mappedin.Coordinate(lastUserGuess[0], lastUserGuess[1], lastUserGuess[2]);
+
+    //MONGO HERE
     const actuallocation = new Mappedin.Coordinate(43.47276, -80.53937, "m_d1a647643658e985");
     const directions = mapView.getDirections(userguess, actuallocation);
-    console.log(userguess)
+    const distance = (directions?.distance);
+    console.log(distance);
+    const points = 10000 / distance;
 
     useEffect(() => {
       mapView.Labels.removeAll()

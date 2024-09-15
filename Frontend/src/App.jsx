@@ -5,6 +5,8 @@ import Photo from "./pages/Photo.jsx";
 import Login from "./pages/Login.jsx";
 import Register from "./pages/Register.jsx";
 import NavBar from "./NavBar/navbar.jsx";
+import Guess from "./Guess/Guess.tsx";
+import Result from "./Result/Result.tsx";
 
 
 export default function App() {
