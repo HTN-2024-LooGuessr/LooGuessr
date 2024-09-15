@@ -6,13 +6,21 @@ export default function CameraComponent() {
     async function capture() {
         const video = document.getElementById("cameraFeed") 
         const canvas = document.createElement("canvas");
-        let data = {}
+        let data = {"image": 'sajfkljhghsdljgsdl'}
         canvas.width = video.videoWidth;
         canvas.height = video.videoHeight;
         
         const context = canvas.getContext('2d');
         context.drawImage(video, 0, 0, canvas.width, canvas.height);
-        
+
+        const loadImageInfo = async () => {
+            axios.put(`http://localhost:5555/user/${localStorage.getItem("uid")}`, data)
+                .then((res) => {
+                    console.log("hi processed")
+                    console.log(res)
+                })
+                .catch((error) => console.log(error))
+        }
         //JONATHAN: Send the dataURL (image), and the username of the current account
         navigator.geolocation.getCurrentPosition(pos => {
             data = {
@@ -22,17 +30,9 @@ export default function CameraComponent() {
                 altitude: pos.coords.altitude ? pos.coords.altitude : 0,
                 // timestamp: pos.timestamp
                 };
+            loadImageInfo()
         })
-        const loadImageInfo = async () => {
-            axios.put(`http://localhost:5555/user/${localStorage.getItem("uid")}`, data)
-                .then((res) => {
-                    console.log("hi processed")
-                    console.log(res)
-                })
-                .catch((error) => console.log(error))
-        }
-
-        loadImageInfo()
+        console.log(data)
     };
 
     return (

@@ -178,10 +178,21 @@ router.put('/pw/:id', async (request, response) => {
     }
 });
 
+// router.use((req, res, next) => {
+//     res.setHeader('Access-Control-Allow-Origin', '*');
+//     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PATCH, PUT, DELETE, OPTIONS');
+//     res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization, Origin');
+//     if (req.method === 'OPTIONS') {
+//         return res.sendStatus(200);
+//     }
+//     next();
+// });
+
 router.put('/:id', async (request, response) => {
     try{
+        // response.appendHeader("Access-Control-Allow-Origin", "*");
         const id = request.params.id; // getting id from the parameters
-
+        console.log(request.body)
         const result = await User.findByIdAndUpdate(id, request.body); // uses the object literal to update the values present with the id
         if (!result){
             return response.status(404).json({message : 'User not found'});

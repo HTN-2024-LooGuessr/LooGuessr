@@ -1,4 +1,5 @@
 import express from "express";
+import bodyParser from "body-parser";
 import cors from "cors";
 // import {MONGODBURL, PORT} from "./config.js";
 import userRoute from "./routes/userRoute.js";
@@ -9,15 +10,12 @@ const MONGODBURL = "mongodb+srv://looguesser1234:SpQn5d98zT9J5z5T@looguessr.9one
 const PORT = "5555";
 
 const app = express();
+// var app = express();
+app.use(bodyParser.json({ limit: '50mb' }));
+app.use(bodyParser.urlencoded({ limit: '50mb', extended: true, parameterLimit: 50000 }));
 
-app.use(express.json());
-
-app.use(cors({
-    origin: ["http://localhost:5555", "http://localhost:5173"],
-    method: ["GET", "POST", "PUT", "DELETE"],
-    allowedHeaders: ["Content-Type"]
-}));
-
+// app.use(express.json());
+app.use(cors())
 app.use("/user", userRoute);
 
 app.get('/', (request, response) => {
