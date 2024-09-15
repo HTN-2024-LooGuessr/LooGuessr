@@ -38,25 +38,28 @@ export default function CameraComponent() {
 
     return (
         <>
-            <select onChange={(e) => {
-                    const sel = document.getElementById("dropdownFloor");
-                    if (sel == null) return;
-                    const floorNum = sel.options[sel.selectedIndex].textContent.split(" ")[1];
-                    console.log(floorNum)
-                    if (floorNum != undefined) setCurFloorNum(floorNum);
-                    mapView.setFloor(e.target.value); }} id="dropdownFloor" title="level select"
-                style={{ position: 'absolute', top: "2vh", right: "2vh", 
-                        width: "150px",
-                        height: "50px",
-                        backgroundColor: 'var(--accent-color)', 
-                        color: "white",
-                        fontFamily: 'system-ui',  
-                        fontSize: 16, 
-                        borderRadius: '15px', /* Rounded corners */
-                        padding: '10px 20px', 
-                        border: 'none', 
-                        outline: 'none', 
-                        transition: 'background-color 150ms ease' }}>
+        <select
+        onChange={(e) => {
+          setCurFloorID(e.target.value);
+        }}
+        title="level select camera"
+        style={{ 
+            position: 'absolute', 
+            top: 10, 
+            left: 10, 
+            backgroundColor: 'rgb(170 100 180)', /* Purple background */
+            color: '#000000',
+            fontFamily: 'Arial',  
+            fontSize: 16, 
+            borderRadius: '15px', /* Rounded corners */
+            padding: '10px 20px', 
+            border: 'none', 
+            outline: 'none', 
+            cursor: 'pointer', 
+            transition: 'background-color 0.3s ease',
+            zIndex: 1000 /* Ensure the select is on top */
+        }}>
+
 
             <option> Floor 1</option>
             <option> Floor 2</option>
