@@ -7,7 +7,8 @@ import "@mappedin/react-sdk/lib/esm/index.css";
 
 function GuessCustomComponent() {
     const { mapData, mapView } = useMap();
-    const [curFloorID, setCurFloorID] = useState("m_e6c96a31fba4ef51")
+    const [curFloorNum, setCurFloorNum] = useState("1");
+    const [curFloorID, setCurFloorID] = useState("m_e6c96a31fba4ef51");
 
     const [eventCoordinate, setEventCoordinate] = useState({})
     const [guess, setGuess] = useState(false);
@@ -19,7 +20,7 @@ function GuessCustomComponent() {
         setGuess(true);
 
         mapView.Labels.removeAll(); 
-        setEventCoordinate([event.coordinate.latitude, event.coordinate.longitude, curFloorID]);
+        setEventCoordinate([event.coordinate.latitude, event.coordinate.longitude, curFloorNum]);
 
         return mapView.Labels.add(new Mappedin.Coordinate(event.coordinate.latitude, event.coordinate.longitude, curFloorID), 'Your Guess');
     }) 
@@ -28,36 +29,38 @@ function GuessCustomComponent() {
     function storeCoordsLocally() {
         console.log("Coordinates", eventCoordinate)
         localStorage.setItem("lastUserGuess", JSON.stringify(eventCoordinate));
-        
     };
 
     return (
         <>
         <select
         onChange={(e) => {
-          setCurFloorID(e.target.value);
-          mapView.setFloor(e.target.value);
+            const floorNum = e.target.textContent?.split(" ")[1];
+            console.log(floorNum)
+            if (floorNum != undefined) setCurFloorNum(floorNum);
+            mapView.setFloor(e.target.value);
         }}
         title="level select"
-        style={{ position: 'absolute', top: 10, left: 10, 
-                backgroundColor: 'rgb(170 100 180)', /* Purple background */
-                color: '#000000',
-                fontFamily: 'Arial',  
+        style={{ position: 'absolute', bottom: "10%", left: "4vh", 
+                width: "220px",
+                height: "50px",
+                backgroundColor: 'var(--accent-color)', 
+                color: "white",
+                fontFamily: 'system-ui',  
                 fontSize: 16, 
                 borderRadius: '15px', /* Rounded corners */
                 padding: '10px 20px', 
                 border: 'none', 
                 outline: 'none', 
-                cursor: 'pointer', 
-                transition: 'background-color 0.3s ease',   
+                transition: 'background-color 150ms ease',   
         }}
         >
         {mapData.getByType("floor").map((floor, idx) => {
-          return (
-            <option key={idx} value={floor.id}>
-              {floor.name}
-            </option>
-          );
+            return (
+                <option key={idx} value={floor.id}>
+                    {floor.name}
+                </option>
+            );
         })}
         </select>
         <div id="guessMapControls" style={{ pointerEvents: "none", opacity: "0", position: "absolute", top: 0, left: 0}}>
@@ -70,8 +73,7 @@ function GuessCustomComponent() {
                 style={{
                     position: "fixed", // Fixed position so it floats
                     bottom: "10%", // Slight margin from the bottom
-                    left: "50%", // Center horizontally
-                    transform: "translateX(-50%)", // Align center horizontally
+                    right: "4vh", // Center horizontally
                     width: "200px", // Larger width for pill shape
                     height: "50px", // Shorter height
                     borderRadius: "15px", // High border radius for rounded pill shape
