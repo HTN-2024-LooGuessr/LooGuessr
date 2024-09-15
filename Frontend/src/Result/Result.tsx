@@ -39,6 +39,25 @@ function ResultCustomComponent() {
     //   });
       return (
       <>
+        {/* Display Points in a Bubble at the Top Center */}
+        <div
+          style={{
+            position: "fixed", // Fixed at the top
+            top: "20px", // Margin from the top
+            left: "50%", // Center horizontally
+            transform: "translateX(-50%)", // Perfectly center by offsetting 50%
+            padding: "10px 20px", // Padding for a bubble-like appearance
+            backgroundColor: "#4caf50", // Light green color for the bubble
+            color: "white", // White text color
+            borderRadius: "25px", // Rounded for the bubble shape
+            fontSize: "18px", // Slightly larger text
+            boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)", // A bit of shadow for depth
+            zIndex: 1000, // Make sure it's on top of everything else
+          }}
+        >
+          Points: {points}
+        </div>
+        
         <Path coordinate={directions.coordinates} />
 
         <button id = 'shougunbutton' // onClick = {/*JONATHAN DO ROUTING*/}
