@@ -20,18 +20,18 @@ export default function App() {
 
     if (localStorage.getItem("uid") == null && !window.location.pathname.includes("login")) {
         localStorage.setItem("points", "0");
-        window.location.assign("/LooGuessr/login");
+        window.location.assign("/LooGuessr#login");
     }
 
     return (
         <>
             <Routes>
                 <Route path='LooGuessr/' element={<Home uid={localStorage.getItem("uid")} logout={logout}></Home>}/>
-                <Route path='LooGuessr/photo' element={<Photo uid={localStorage.getItem("uid")}></Photo>}/>
-                <Route path='LooGuessr/login' element={<Login uid={localStorage.getItem("uid")} login={login}></Login>}/>
-                <Route path='LooGuessr/register' element={<Register></Register>}/>
-                <Route path='LooGuessr/profile' element={<Profile uid={localStorage.getItem("uid")} logout={logout}></Profile>}/>
-                <Route path='LooGuessr/results' element={<Result></Result>}></Route>
+                <Route path='LooGuessr#photo' element={<Photo uid={localStorage.getItem("uid")}></Photo>}/>
+                <Route path='LooGuessr#login' element={<Login uid={localStorage.getItem("uid")} login={login}></Login>}/>
+                <Route path='LooGuessr#register' element={<Register></Register>}/>
+                <Route path='LooGuessr#profile' element={<Profile uid={localStorage.getItem("uid")} logout={logout}></Profile>}/>
+                <Route path='LooGuessr#results' element={<Result></Result>}></Route>
             </Routes>
             <NavBar></NavBar>
         </>
