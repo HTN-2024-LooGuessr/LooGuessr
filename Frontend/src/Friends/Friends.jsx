@@ -134,7 +134,8 @@ function Friend(props) {
 
     async function click() {
         const username = props.username;
-        const response = { image: "C:\\Users\\saaru\\Downloads\\Capture1726354644.jpg", status: "other" }//SENDTOSERVER(getUsernamePhoto);
+        const response = //Get request to get the image of the other user (if any), and whether I made a guess or not
+                        { image: "C:\\Users\\saaru\\Downloads\\Capture1726354644.jpg", status: "other" }
 
         switch (response.status) {
             case "guessMade": //Display your guess and the guess of other users
