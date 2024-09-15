@@ -48,6 +48,34 @@ function GuessCustomComponent() {
     };
 
     return (
+        <>
+        <select
+        onChange={(e) => {
+          setCurFloorID(e.target.value);
+          mapView.setFloor(e.target.value);
+        }}
+        title="level select"
+        style={{ position: 'absolute', top: 10, left: 10, 
+                backgroundColor: 'rgb(170 100 180)', /* Purple background */
+                color: '#000000',
+                fontFamily: 'Arial',  
+                fontSize: 16, 
+                borderRadius: '15px', /* Rounded corners */
+                padding: '10px 20px', 
+                border: 'none', 
+                outline: 'none', 
+                cursor: 'pointer', 
+                transition: 'background-color 0.3s ease',   
+        }}
+        >
+        {mapData.getByType("floor").map((floor, idx) => {
+          return (
+            <option key={idx} value={floor.id}>
+              {floor.name}
+            </option>
+          );
+        })}
+        </select>
         <div id="guessMapControls" style={{ pointerEvents: "none", opacity: "0", position: "absolute", top: 0, left: 0}}>
             {/* <button onClick={() => console.log("other button click")} style={{position: 'absolute', top: 0, left: 100}}>
                 Hello Button
@@ -79,6 +107,7 @@ function GuessCustomComponent() {
                 Submit Guess!
             </button>
         </div>
+        </>
     );
 }
 
