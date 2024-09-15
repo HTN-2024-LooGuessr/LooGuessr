@@ -1,0 +1,29 @@
+.profileImg {
+    height: 10vh;
+    width: 10vh;
+    margin-right: 2vh;
+    border-radius: 100%;
+}
+
+.header {
+    display: flex;
+}
+
+
+.name {
+    font-size: 6vh;
+    font-weight: 500;
+    font-family: system-ui;
+    color: white;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.logout {
+    color: white;
+}
+
+.logoutButton{
+    border: none;
+    background-color: inherit;
+}
