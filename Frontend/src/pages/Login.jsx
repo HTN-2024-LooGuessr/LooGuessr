@@ -51,7 +51,7 @@ export default function Login(props) {
 
     if (localStorage.getItem("uid") == null && !window.location.pathname.includes("login")) {
         localStorage.setItem("points", "0");
-        window.location.assign("/LooGuessr/login");
+        window.location.assign("/LooGuessr#/login");
     }
     
     return (

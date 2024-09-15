@@ -28,7 +28,7 @@ function NavButton(props) {
             }
         }
 
-        navigate(`LooGuessr/${props.redirect}`);
+        navigate(`/LooGuessr#/${props.redirect}`);
         if (props.redirect == "photo") {
             let stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment", width: 2880, height: 1800 }, audio: false });
             const video = document.getElementById("cameraFeed");
