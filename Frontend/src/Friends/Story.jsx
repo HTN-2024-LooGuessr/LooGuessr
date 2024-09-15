@@ -14,20 +14,17 @@ export default function Story() {
     }
 
     function onStorySwap(ev) {
-        console.log("Swapping Story")
         const map = document.getElementById("guessMap"), image = document.getElementById("storyImage"), 
                     switchIcon = document.getElementById("storySwapIcon"), 
                     mapControls = document.getElementById("guessMapControls");
 
         if (switchIcon.textContent == "person_pin_circle") {
-            image.style.visibility = "hidden";
-            image.style.pointerEvents = "none";
+            image.style.zIndex = "-1";
+            map.style.zIndex = "0";
 
-            map.style.visibility = "";
-            map.style.pointerEvents = "";
-            
             if (mapControls) {
-                mapControls.style.visibility = "";
+                mapControls.style.zIndex = "3";
+                mapControls.style.opacity = "";
                 mapControls.style.pointerEvents = "";
             }
 
@@ -35,16 +32,13 @@ export default function Story() {
             switchIcon.style.fontVariationSettings = "font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24";
             handleMapGuess();
         } else {
-            map.style.visibility = "hidden";
-            map.style.pointerEvents = "none";
-            
+            image.style.zIndex = "1";
+            map.style.zIndex = "0";
             if (mapControls) {
-                mapControls.style.visibility = "hidden";
-                mapControls.style.pointerEvents = "none";
+                mapControls.style.zIndex = "0";
+                mapControls.style.opacity = "0";
+                mapControls.style.pointerEvents = "none"; 
             }
-
-            image.style.visibility = "";
-            image.style.pointerEvents = "";
 
             switchIcon.textContent = "person_pin_circle";
             switchIcon.style.fontVariationSettings = "font-variation-settings: 'FILL' 1, 'wght' 300, 'GRAD' 0, 'opsz' 24";
@@ -53,7 +47,7 @@ export default function Story() {
 
     return (
         <div className="story" id="story" style={{ backgroundColor: "red", opacity: 0, pointerEvents: "none" }}>
-            <button id="backButton" className="storybutton" onClick={onBack}>
+            <button id="backButton" className="storyButton" onClick={onBack}>
                 <span id="backButtonIcon" className="material-symbols-rounded" style={{ width: "1.75vh", fontSize: "3.5vh" }}>arrow_back_ios</span>
             </button>
             <button id="storySwapButton" className="storyButton" onClick={onStorySwap}>

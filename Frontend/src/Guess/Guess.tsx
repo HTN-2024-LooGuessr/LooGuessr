@@ -22,7 +22,7 @@ function GuessCustomComponent() {
     // add event handler for the coordinate (labels.add)
     mapView.on("click", (event) => {
         var a = document.getElementById("namanbutton");
-        a.style.backgroundColor = 'green';
+        if (a) a.style.backgroundColor = 'var(--accent-color)';
         setGuess(true);
 
         // if(event.spaces.length > 0)
@@ -37,10 +37,6 @@ function GuessCustomComponent() {
         //Add the label
         return mapView.Labels.add(new Mappedin.Coordinate(event.coordinate.latitude, event.coordinate.longitude, curFloorID), 'Your Guess');
     }) 
-    
-    mapData.getByType("floor").forEach((floor) => {
-        //add to the selector?
-    });
 
     // Function to store guess coordinates in localStorage
     function storeCoordsLocally () {
@@ -51,32 +47,14 @@ function GuessCustomComponent() {
         // }
     };
 
-    console.log(guess)
     return (
         <div id="guessMapControls" style={{ pointerEvents: "none", opacity: "0", position: "absolute", top: 0, left: 0}}>
-            <select
-                onChange={(e) => {
-                setCurFloorID(e.target.value);
-                mapView.setFloor(e.target.value);
-                }}
-                title="level select"
-                style={{ position: 'absolute', top: 0, left: 0 }}
-            >
-                {mapData.getByType("floor").map((floor, idx) => {
-                return (
-                    <option key={idx} value={floor.id}>
-                    {floor.name}
-                    </option>
-                );
-                })}
-            </select>
-
             {/* <button onClick={() => console.log("other button click")} style={{position: 'absolute', top: 0, left: 100}}>
                 Hello Button
             </button> */}
 
             {/* SUBMIT BUTTON */}
-            <button id = 'namanbutton' onClick = {storeCoordsLocally}
+            <button id='namanbutton' onClick = {storeCoordsLocally}
                 style={{
                     position: "fixed", // Fixed position so it floats
                     bottom: "10%", // Slight margin from the bottom
@@ -84,16 +62,19 @@ function GuessCustomComponent() {
                     transform: "translateX(-50%)", // Align center horizontally
                     width: "200px", // Larger width for pill shape
                     height: "50px", // Shorter height
-                    borderRadius: "25px", // High border radius for rounded pill shape
-                    backgroundColor: "grey", // Green if guess exists, grey otherwise
+                    borderRadius: "15px", // High border radius for rounded pill shape
+                    backgroundColor: "var(--primary-color)", // Green if guess exists, grey otherwise
+                    border: "none",
+                    outline: "none",
                     color: "white",
                     fontSize: "18px", // Text size
+                    fontFamily: "system-ui",
+                    fontWeight: "500",
                     display: "flex", // Flexbox to center content
                     justifyContent: "center", // Center text horizontally
                     alignItems: "center", // Center text vertically
-                    // cursor: guess ? "pointer" : "not-allowed", // Disabled style if no guess
-                }}
-                    disabled={!guess} /*Disable button when there's no guess*/>
+                    boxShadow: "0 0 5px rgb(0 0 0 / 25%)"
+                }} disabled={!guess}>
                 Submit Guess!
             </button>
         </div>

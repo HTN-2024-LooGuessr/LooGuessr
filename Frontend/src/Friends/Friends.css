@@ -51,7 +51,7 @@
 .storyButton {
     height: 7vh;
     width: 7vh;
-    z-index: 1;
+    z-index: 10;
     border-radius: 15px;
     color: white;
     border: none;
@@ -74,10 +74,18 @@
 }
 
 .storyImage {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100vw;
     height: 100vh;
 }
 
 .storyButton:active {
+    background-color: var(--on-hover);
+}
+
+#namanbutton {
+    transition: background-color 150ms ease-in;
     background-color: var(--on-hover);
 }

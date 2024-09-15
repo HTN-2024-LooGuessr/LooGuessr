@@ -31,6 +31,7 @@ export default function CameraComponent() {
                     })
                     .catch((error) => console.log(error))
             })
+            
             loadImageInfo()
         })
     };
