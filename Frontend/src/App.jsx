@@ -7,7 +7,7 @@ import Register from "./pages/Register.jsx";
 import NavBar from "./NavBar/navbar.jsx";
 import Profile from "./pages/Profile.jsx";
 import {useNavigate} from "react-router-dom";
-
+import { useState, useEffect } from "react";
 
 export default function App() {
     const [uid, setUid] = useState("");

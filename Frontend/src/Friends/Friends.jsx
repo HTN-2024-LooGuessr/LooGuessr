@@ -1,5 +1,6 @@
 import React, {useCallback, useState, useEffect} from "react";
 import "./Friends.css";
+import Story from "./Story";
 import axios from "axios";
 
 export default function FriendList(props) {
@@ -63,7 +64,9 @@ export function handleMapGuess() { //NAMAN
 function Friend(props) {
     function toggleStory(displayMap) {
         const map = document.getElementById("guessMap"), image = document.getElementById("storyImage"), 
-              switchIcon = document.getElementById("storySwapIcon");
+              switchIcon = document.getElementById("storySwapIcon"), mapControls = document.getElementById("guessMapControls");
+        
+        console.log(map);
 
         if (displayMap) {
             image.style.opacity = 0;
@@ -71,6 +74,11 @@ function Friend(props) {
 
             map.style.opacity = 1;
             map.style.pointerEvents = "";
+            
+            if (mapControls) {
+                mapControls.style.opacity = 1;
+                mapControls.style.pointerEvents = "";
+            }
 
             switchIcon.textContent = "image";
             switchIcon.style.fontVariationSettings = "font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;";
@@ -78,6 +86,11 @@ function Friend(props) {
         } else {
             map.style.opacity = 0;
             map.style.pointerEvents = "none";
+            
+            if (mapControls) {
+                mapControls.style.opacity = 0;
+                mapControls.style.pointerEvents = "none";
+            }
 
             image.style.opacity = 1;
             image.style.pointerEvents = "";
@@ -100,12 +113,8 @@ function Friend(props) {
             default: //You hasn't made a guess / You haven't viewed their new image; show their image
                 const story = document.getElementById("story");
                 document.getElementById("navbar").style.opacity = 0;
-                if (response.status == "guessMade") { //Display Map instead
-
-                } else {  //Display Image 
-                    
-                }
-                toggleStory(story, response.status == "guessMade");
+            
+                //toggleStory(story, response.status == "guessMade");
                 await new Promise(r => setTimeout(r, 50));
                 story.style.opacity = "1";
                 story.style.pointerEvents = "all";

@@ -42,6 +42,7 @@
     position: absolute;
     top: 0;
     left: 0;
+    z-index: 1;
     width: 100vw;
     height: 100vh;
     transition: opacity 150ms ease-in;
@@ -50,6 +51,7 @@
 .storyButton {
     height: 7vh;
     width: 7vh;
+    z-index: 1;
     border-radius: 15px;
     color: white;
     border: none;
