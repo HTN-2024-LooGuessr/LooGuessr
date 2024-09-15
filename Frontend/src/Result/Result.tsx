@@ -20,13 +20,13 @@ function ResultCustomComponent() {
     const points = 10000 / distance;
 
     useEffect(() => {
-      mapView.Labels.removeAll()
+        mapView.Labels.removeAll()
 
-      const userguess = new Mappedin.Coordinate(43.47308, -80.53953, "m_883f57e8a60ad67b");
-      const actuallocation = new Mappedin.Coordinate(43.47276, -80.53937, "m_d1a647643658e985");
-      mapView.Labels.add(userguess, 'Your Guess');
-      mapView.Labels.add(actuallocation, "Actual Location");  
-      mapView.expand()
+        const userguess = new Mappedin.Coordinate(43.47308, -80.53953, "m_883f57e8a60ad67b");
+        const actuallocation = new Mappedin.Coordinate(43.47276, -80.53937, "m_d1a647643658e985");
+        mapView.Labels.add(userguess, 'Your Guess');
+        mapView.Labels.add(actuallocation, "Actual Location");  
+        mapView.expand()
     },
     [mapView] //whenever mapView is changed
     )
@@ -37,7 +37,7 @@ function ResultCustomComponent() {
     // return mapData.getByType("space").map((space) => {
     //     return <Label target={space.center} text={space.name} />;
     //   });
-      return (
+    return (
       <>
         {/* Display Points in a Bubble at the Top Center */}
         <div

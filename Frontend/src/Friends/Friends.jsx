@@ -112,26 +112,17 @@ function Friend(props) {
         // //update whosguessed
         // uploadWhosGuessed(whosGuessed)
 
-        const response = //Get request to get the image of the other user (if any), and whether I made a guess or not
-                        { image: "C:\\Users\\saaru\\Downloads\\Capture1726354644.jpg", status: "other" }
-
-        console.log(whosGuessed, friendID, hasGuessed);
-        switch (response.status) {
-            case "guessMade": //Display your guess and the guess of other users
-                break;
-            case "noPhotos": //User hasn't posted a photo yet (or their photo expired after 24 hours); Do Nothing
-                break;
-            default: //You hasn't made a guess / You haven't viewed their new image; show their image
-                const story = document.getElementById("story");
-                document.getElementById("navbar").style.opacity = 0;
-                
-                toggleStory(response.status == "guessMade");
-                await new Promise(r => setTimeout(r, 50));
-                document.getElementById("storyImage").style.background = `url(${image})`;
-                story.style.opacity = "1";
-                story.style.pointerEvents = "all";
-                break;
+        if (image != null && image.indexOf("data:") != -1) { //You haven't made a guess / You haven't viewed their new image
+            const story = document.getElementById("story"), storyImg = document.getElementById("storyImage");
+            document.getElementById("navbar").style.opacity = 0;
+            
+            await new Promise(r => setTimeout(r, 50));
+            storyImg.style.background = `url(${image})`;
+            story.style.opacity = "1";
+            story.style.pointerEvents = "all";
         }
+        
+        toggleStory(hasGuessed);
     }
 
     return (

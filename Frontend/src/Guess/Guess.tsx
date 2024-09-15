@@ -26,6 +26,7 @@ function GuessCustomComponent() {
 
     // Function to store guess coordinates in localStorage
     function storeCoordsLocally() {
+        console.log("Coordinates", eventCoordinate)
         localStorage.setItem("lastUserGuess", JSON.stringify(eventCoordinate));
         
     };
