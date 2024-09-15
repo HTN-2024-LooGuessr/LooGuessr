@@ -1,10 +1,3 @@
-/*
-To-do: (Put it on the actual repo - must rename App)
-- Add it to the database based on the user, and the guess
--sort the select floor numbers
-
-
-**/
 
 import React, {useState} from "react";
 import Mappedin, { MapView, useMapData, useMap, Label} from "@mappedin/react-sdk";
@@ -25,26 +18,16 @@ function GuessCustomComponent() {
         if (a) a.style.backgroundColor = 'var(--accent-color)';
         setGuess(true);
 
-        // if(event.spaces.length > 0)
-        
-        //console.log(guess);
         mapView.Labels.removeAll(); 
         setEventCoordinate([event.coordinate.latitude, event.coordinate.longitude, curFloorID]);
-        // setEventCoordinate(new Mappedin.Coordinate(event.coordinate.latitude, event.coordinate.longitude, curFloorID));
-        
-        //ADD TO THE DB WITH THE USER
 
-        //Add the label
         return mapView.Labels.add(new Mappedin.Coordinate(event.coordinate.latitude, event.coordinate.longitude, curFloorID), 'Your Guess');
     }) 
 
     // Function to store guess coordinates in localStorage
-    function storeCoordsLocally () {
-        // if (guess) {
-        // Store guess in localStorage
+    function storeCoordsLocally() {
         localStorage.setItem("lastUserGuess", JSON.stringify(eventCoordinate));
-        console.log("Your guess has been saved!"); 
-        // }
+        
     };
 
     return (

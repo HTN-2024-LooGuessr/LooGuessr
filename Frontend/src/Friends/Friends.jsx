@@ -98,30 +98,11 @@ function Friend(props) {
     }
 
     async function click() {
-        const username = props.username;
+        const username = props.username;        
+        const res = await axios.get(`http://localhost:5555/user/username/${username}`);
+        let image = res.data[0].image, whosGuessed = res.data[0].guessed, friendID = res.data[0]._id,
+            hasGuessed = res.data[0].guessed.includes(props.uid);
 
-        // const [image, setImage] = useState("")
-        // const [whosGuessed, setWhosGuessed] = useState([])
-        // const [guessed, setGuessed] = useState(false)
-        // const [friendID, setFriendID] = useState("")
-        let image, whosGuessed, friendID, hasGuessed
-        //
-        const loadFriendImage = async () => {
-            axios.get(`http://localhost:5555/user/username/${username}`)
-                .then((res) => {
-                    console.log(res.data)
-                    image = res.data.image
-                    whosGuessed = res.data.guessed
-                    friendID = res.data._id
-                    hasGuessed = res.data.guessed.includes(props.uid)
-                    // setImage(res.data.data.image) // retrieve friend's image
-                    // setWhosGuessed(res.data.data.guessed)
-                    // setFriendID(res.data.data._id)
-                    // setGuessed(res.data.data.guessed.includes(props.uid))
-                }).catch((error) => console.log(error))
-        }
-        loadFriendImage() // image will be null if there is no image
-        //
         // //move somewhere around here
         // const uploadWhosGuessed = useCallback((data) => {
         //     axios.put(`http://localhost:5555/${friendID}`, {data})
@@ -134,6 +115,7 @@ function Friend(props) {
         const response = //Get request to get the image of the other user (if any), and whether I made a guess or not
                         { image: "C:\\Users\\saaru\\Downloads\\Capture1726354644.jpg", status: "other" }
 
+        console.log(whosGuessed, friendID, hasGuessed);
         switch (response.status) {
             case "guessMade": //Display your guess and the guess of other users
                 break;
@@ -145,6 +127,7 @@ function Friend(props) {
                 
                 toggleStory(response.status == "guessMade");
                 await new Promise(r => setTimeout(r, 50));
+                document.getElementById("storyImage").style.background = `url(${image})`;
                 story.style.opacity = "1";
                 story.style.pointerEvents = "all";
                 break;
