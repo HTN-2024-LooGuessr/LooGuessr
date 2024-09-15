@@ -33,13 +33,15 @@ function GuessCustomComponent() {
 
     return (
         <>
-        <select
+        <select 
         onChange={(e) => {
-            const floorNum = e.target.textContent?.split(" ")[1];
+            const sel = document.getElementById("dropdownFloor");
+            if (sel == null) return;
+            const floorNum = sel.options[sel.selectedIndex].textContent.split(" ")[1];
             console.log(floorNum)
             if (floorNum != undefined) setCurFloorNum(floorNum);
             mapView.setFloor(e.target.value);
-        }}
+        }} id="dropdownFloor"
         title="level select"
         style={{ position: 'absolute', bottom: "10%", left: "4vh", 
                 width: "220px",
