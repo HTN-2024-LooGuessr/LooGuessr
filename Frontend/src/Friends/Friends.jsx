@@ -1,4 +1,4 @@
-import {useCallback, useState, useEffect} from "react";
+import React, {useCallback, useState, useEffect} from "react";
 import "./Friends.css";
 import Story from "./Story";
 import axios from "axios";
@@ -64,7 +64,7 @@ export function handleMapGuess() { //NAMAN
 
 }
 
-export function Friend(props) {
+function Friend(props) {
     function toggleStory(displayMap) {
         const map = document.getElementById("guessMap"), image = document.getElementById("storyImage"), 
               switchIcon = document.getElementById("storySwapIcon"), mapControls = document.getElementById("guessMapControls");
@@ -99,25 +99,37 @@ export function Friend(props) {
 
     async function click() {
         const username = props.username;
-        //const [image, setImage] = useState("")
-        //const [whosGuessed, setWhosGuessed] = useState([])
-        //const [guessed, setGuessed] = useState(false)
-        //const [friendID, setFriendID] = useState("")
-        let image, whosGuessed, guessed, friendID;
 
-        
-        await axios.get(`http://localhost:5555/user/username/${username}`).then((res) => {
-            image = res.data[0].image;
-            whosGuessed = res.data[0].guessed;
-            friendID = res.data[0]._id;
-            guessed = res.data[0].guessed.includes(props.uid);
-        }).catch((error) => console.log(error));
-
-        //move somewhere around here
-        //axios.put(`http://localhost:5555/${friendID}`, {data}).then((res) => console.log(res)).catch((error) => console.log(error));
-
-        //update whosguessed
-        //uploadWhosGuessed(whosGuessed)
+        // const [image, setImage] = useState("")
+        // const [whosGuessed, setWhosGuessed] = useState([])
+        // const [guessed, setGuessed] = useState(false)
+        // const [friendID, setFriendID] = useState("")
+        let image, whosGuessed, friendID, hasGuessed
+        //
+        const loadFriendImage = async () => {
+            axios.get(`http://localhost:5555/user/username/${username}`)
+                .then((res) => {
+                    console.log(res.data)
+                    image = res.data.image
+                    whosGuessed = res.data.guessed
+                    friendID = res.data._id
+                    hasGuessed = res.data.guessed.includes(props.uid)
+                    // setImage(res.data.data.image) // retrieve friend's image
+                    // setWhosGuessed(res.data.data.guessed)
+                    // setFriendID(res.data.data._id)
+                    // setGuessed(res.data.data.guessed.includes(props.uid))
+                }).catch((error) => console.log(error))
+        }
+        loadFriendImage() // image will be null if there is no image
+        //
+        // //move somewhere around here
+        // const uploadWhosGuessed = useCallback((data) => {
+        //     axios.put(`http://localhost:5555/${friendID}`, {data})
+        //         .then((res) => console.log(res))
+        //         .catch((error) => console.log(error))
+        // })
+        // //update whosguessed
+        // uploadWhosGuessed(whosGuessed)
 
         const response = //Get request to get the image of the other user (if any), and whether I made a guess or not
                         { image: "C:\\Users\\saaru\\Downloads\\Capture1726354644.jpg", status: "other" }
