@@ -16,7 +16,12 @@ router.post('/register', async (request, response) => {
         const newUser = {
             username: request.body.username,
             email: request.body.email,
-            password: hashedPassword
+            password: hashedPassword,
+            image: null,
+            long: null,
+            lat: null,
+            alt: null,
+            points: null
         };
 
         const userExists = await User.findOne({email: request.body.email})
@@ -79,6 +84,18 @@ router.get('/:id', async (request, response) => {
     try{
         const id = request.params.id;
         const user = await User.findById(id);
+        return response.status(200).json(user);
+    }catch(error){
+        console.log(error.message);
+        response.status(500).send({message: error.message});
+    }
+});
+
+// Get user by id
+router.get('/:username', async (request, response) => {
+    try{
+        const username = request.params.id;
+        const user = await User.findOne({username: username});
         return response.status(200).json(user);
     }catch(error){
         console.log(error.message);

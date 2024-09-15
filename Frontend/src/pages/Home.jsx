@@ -11,7 +11,7 @@ export default function Home(props) {
         <>
             {/*<button onClick={props.logout}>Logout</button>*/}
             <SearchBar setSearchParam={setSearchParam}></SearchBar>
-            <FriendList searchParam={searchParam}></FriendList>
+            <FriendList uid={props.uid} searchParam={searchParam}></FriendList>
             <Story></Story>
         </>
     );

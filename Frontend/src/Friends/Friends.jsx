@@ -18,8 +18,10 @@ export default function FriendList(props) {
             .then((res) => {
                 // let processed = processQuery(res.data.data)
                 // console.log(processed)
-                setFriends(res.data.data)
-                setProcessedFriends(res.data.data);
+                const processed = res.data.data.filter(f => f._id !== props.uid)
+                setFriends(processed)
+                setProcessedFriends(processed);
+                console.log(res.data.data)
                 setLoading(false)
             }).catch((error) => {
                 console.log(error)
@@ -32,6 +34,7 @@ export default function FriendList(props) {
             console.log(friends)
         };
         loadData();
+
         // setFriends((friends) => friends.filter(f => f.username.includes(props.searchParam)))
         // for (let i = 0; i < friends.length; i++){
         //     if (friends[i].username.includes(props.searchParam)){
@@ -41,7 +44,7 @@ export default function FriendList(props) {
     }, [loadFriends]);
     
     useEffect(() => {
-        setProcessedFriends(friends.filter(f => f.username.includes(props.searchParam)))
+        setProcessedFriends(friends.filter(f => f.username.includes(props.searchParam) && f._id !== props.uid))
     }, [props.searchParam]);
 
     // console.log(JSON.parse(friends))
@@ -96,6 +99,31 @@ function Friend(props) {
 
     async function click() {
         const username = props.username;
+        const [image, setImage] = useState("")
+        const [whosGuessed, setWhosGuessed] = useState([])
+        const [guessed, setGuessed] = useState(false)
+        const [friendID, setFriendID] = useState("")
+
+        const loadFriendImage = useCallback(() => {
+            axios.get(`http://localhost:5555/${username}`)
+                .then((res) => {
+                    setImage(res.data.data.image) // retrieve friend's image
+                    setWhosGuessed(res.data.data.guessed)
+                    setFriendID(res.data.data._id)
+                    setGuessed(res.data.data.guessed.includes(props.uid))
+                }).catch((error) => console.log(error))
+        })
+        loadFriendImage() // image will be null if there is no image
+
+        //move somewhere around here
+        const uploadWhosGuessed = useCallback((data) => {
+            axios.put(`http://localhost:5555/${friendID}`, {data})
+                .then((res) => console.log(res))
+                .catch((error) => console.log(error))
+        })
+        //update whosguessed
+        uploadWhosGuessed(whosGuessed)
+
         const response = //Get request to get the image of the other user (if any), and whether I made a guess or not
                         { image: "C:\\Users\\saaru\\Downloads\\Capture1726354644.jpg", status: "other" }
 
