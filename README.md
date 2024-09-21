@@ -26,3 +26,6 @@
 - Showcasing 360-panoramas in 'AR' by stitching together a video recording from the user
 - Addressing privacy concerns with image face blur and an option for delaying showing the image
 - Adding extra points by going to the location physically to make a guess, where time and steps factor into the number of points won
+
+**Testing**
+- Login using the username "NamanB" and the password "123" (don't input the quotations) to try out the app
