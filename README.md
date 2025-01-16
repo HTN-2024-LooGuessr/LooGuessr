@@ -1,3 +1,5 @@
+*You can find the Devpost and Screenshots [here](https://devpost.com/software/looguessr).*
+
 **Inspiration**
 - As first-year students, we have experienced the difficulties of navigating our way around our new home. We wanted to facilitate the transition to university by helping students learn more about their university campus.
 
